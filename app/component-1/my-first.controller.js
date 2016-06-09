@@ -55,7 +55,7 @@ angular.module('app.component1').service('bookService', function(){
     $scope.removeItem = function removeItem(row) {
         var index = $scope.book.indexOf(row);
         if (row === $scope.selectedBook){
-            $scope.selectedBook = null;
+            $scope.selectedBook = undefined;
         }
         if (index !== -1) {
             $scope.book.splice(index, 1);
@@ -85,6 +85,11 @@ angular.module('app.component1').service('bookService', function(){
         });
     };
 
+    var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
 
     $scope.add = function add() {
         $scope.newBook = undefined;
@@ -101,6 +106,15 @@ angular.module('app.component1').service('bookService', function(){
         bookModal.result.then(function (newBook) {
             newBook.id = $scope.book.length+1;
             bookService.pushData(newBook);
+            // $http.post('books.json', newBook)
+            //     .then(
+            //         function(response){
+            //             console.log(response.data);
+            //         },
+            //         function(response){
+            //             // failure callback
+            //         }
+            //     );
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
