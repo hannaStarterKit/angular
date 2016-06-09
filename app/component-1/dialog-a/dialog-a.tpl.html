@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<section>
+    <h2>Hello from Dialog A!</h2>
+    <div>
+        <div>
+            <table data-st-table="book" data-st-safe-src="book"  class="table table-striped">
+                <thead>
+                <tr>
+                    <th>title</th>
+                    <th>authors</th>
+                    <th>year</th>
+                    <th>genre</th>
+                    <th>version</th>
+                    <th>remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="row in book" data-ng-click="setSelected(row)" data-ng-class="{selected : row === selectedBook}">
+                    <td data-ng-bind="row.title"></td>
+                    <td data-ng-bind="row.author"></td>
+                    <td data-ng-bind="row.year"></td>
+                    <td data-ng-bind="row.genre"></td>
+                    <td data-ng-bind="row.version"></td>
+                    <td>
+                        <button type="button" data-ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                            <i class="glyphicon glyphicon-remove-circle">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="button" ng-click="addRandomItem(row)" class="btn btn-sm btn-success">
+                <i class="glyphicon glyphicon-plus">
+                </i> Add random item
+            </button>
+            <button type="button" ng-click="add()" class="btn btn-sm btn-success">
+                <i class="glyphicon glyphicon-plus">
+                </i>
+            </button>
+            <button class="btn btn-default btn-sm" data-ng-click="edit()" data-ng-if="selectedBook!==undefined"><span class="glyphicon glyphicon-pencil"></span></button>
+
+
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

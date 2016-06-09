@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Hello from Dialog C!</h2>
+
+<div data-ng-show="booksDialogC!==undefined">
+    <table st-table="booksDialogC" st-safe-src="booksDialogC"  class="table table-striped">
+        <thead>
+        <tr>
+            <th>title</th>
+            <th>authors</th>
+            <th>year</th>
+            <th>genre</th>
+            <th>version</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="row in booksDialogC">
+            <td data-ng-bind="row.title"></td>
+            <td data-ng-bind="row.author"></td>
+            <td data-ng-bind="row.year"></td>
+            <td data-ng-bind="row.genre"></td>
+            <td data-ng-bind="row.version"></td>
+        </tr>
+        </tbody>
+
+            <select id="searchGenre" st-search="genre" ng-model="search.genre">
+                <option value="">All</option>
+                <option ng-repeat="row in booksDialogC | unique:'genre'" value="{{row.genre}}">{{row.genre}}</option>
+            </select>
+
+    </table>
+    <table st-table="booksDialogC" st-safe-src="booksDialogC"  class="table table-striped">
+        <thead>
+        <tr>
+            <th>title</th>
+            <th>authors</th>
+            <th>year</th>
+            <th>genre</th>
+            <th>version</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="row in booksDialogC | filter:search">
+            <td data-ng-bind="row.title"></td>
+            <td data-ng-bind="row.author"></td>
+            <td data-ng-bind="row.year"></td>
+            <td data-ng-bind="row.genre"></td>
+            <td data-ng-bind="row.version"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
