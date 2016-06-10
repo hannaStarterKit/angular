@@ -27,7 +27,7 @@
 
             <select id="searchGenre" st-search="genre" ng-model="search.genre">
                 <option value="">All</option>
-                <option ng-repeat="row in booksDialogC | unique:'genre'" value="{{row.genre}}">{{row.genre}}</option>
+                <option ng-repeat="book in booksDialogC | unique:'genre'" value="{{book.genre}}">{{book.genre}}</option>
             </select>
 
     </table>
@@ -43,12 +43,12 @@
 
         </thead>
         <tbody>
-        <tr data-ng-repeat="row in booksDialogC | filter:search">
-            <td data-ng-bind="row.title"></td>
-            <td data-ng-bind="row.author"></td>
-            <td data-ng-bind="row.year"></td>
-            <td data-ng-bind="row.genre"></td>
-            <td data-ng-bind="row.version"></td>
+        <tr data-ng-repeat="row2 in booksDialogC | filter:search">
+            <td data-ng-bind="row2.title"></td>
+            <td data-ng-bind="row2.author"></td>
+            <td data-ng-bind="row2.year"></td>
+            <td data-ng-bind="row2.genre"></td>
+            <td data-ng-bind="row2.version"></td>
         </tr>
         </tbody>
     </table>
