@@ -36,4 +36,14 @@ describe('MySecondController test', function () {
         expect(element.all(by.repeater('row2 in booksDialogC')).count()).toEqual(1);
     });
 
+    it('should check displaying of dialog C', function(){
+       // given
+       browser.get('#/component-3/dialog-c');
+       // when
+       // then
+       expect(element(by.id('tableAll')).isDisplayed()).toBe(false);
+       expect(element(by.id('tableFilter')).isDisplayed()).toBe(false);
+       expect(element(by.id('searchGenre')).isDisplayed()).toBe(false);
+    });
+
 });
