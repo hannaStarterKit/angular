@@ -6,5 +6,10 @@ exports.config = {
     jasmineNodeOpts: {
         showColors: true,
         isVerbose: true
-    }
+    },
+    capabilities: {
+        browserName: 'chrome'
+    },
+    //specs: ['e2e/sample.e2e-spec.js']
+    specs: ['e2e/myFirstController.e2e-spec.js']
 };
