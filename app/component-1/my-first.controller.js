@@ -106,15 +106,6 @@ angular.module('app.component1').service('bookService', function(){
         bookModal.result.then(function (newBook) {
             newBook.id = $scope.book.length+1;
             bookService.pushData(newBook);
-            // $http.post('books.json', newBook)
-            //     .then(
-            //         function(response){
-            //             console.log(response.data);
-            //         },
-            //         function(response){
-            //             // failure callback
-            //         }
-            //     );
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
@@ -187,5 +178,21 @@ angular.module('app.component1').service('bookService', function(){
 
     $scope.formats = ['yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
+
+}).factory('StringService', function () {
+
+    var r=  function reverse(s) {
+        var output = '';
+        for (var i = s.length - 1; i >= 0; i--)
+            output += s[i];
+        return output;
+    }
+
+    return{
+        reverse: function reverse(stringToreverse)
+        {
+            return r(stringToreverse);
+        }
+    }
 
 });

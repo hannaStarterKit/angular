@@ -22,7 +22,7 @@ describe('MyModalController tests', function() {
         $scope = $rootScope.$new();
         $controller('MyModalController', {$scope: $scope, selectedBook: selectedBook, $modalInstance: $modalInstance});
     }));
-//baba.element.all(by.repeater()).setSelected()
+
     describe('', function () {
         it('modalInstance should be dismiss', function () {
             // when

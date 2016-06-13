@@ -11,7 +11,7 @@ describe('MyFirstController test', function () {
         // given
         browser.get('#/component-1/dialog-a');
         element(by.buttonText('Add')).click();
-        element(by.model('selectedBook.title')).sendKeys('title');
+        element(by.model('selectedBook.title')).clear().sendKeys('title');
         element(by.model('selectedBook.author')).sendKeys('author');
         // when
         element(by.buttonText('OK')).click();
