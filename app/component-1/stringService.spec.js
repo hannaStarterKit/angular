@@ -65,7 +65,7 @@ describe('string service tests', function () {
     describe('string method insert', function () {
         it('should insert second string into first strings in the specific index', function () {
             // given
-            var input1 = 'in', input2 = 'put', where = 2, output = 'input';
+            var input1 = 'in', input2 = 'put', where = 1, output = 'input';
             // when
             var outputString = stringService.insert(input1, where, input2);
             // then
@@ -84,6 +84,33 @@ describe('string service tests', function () {
                 expect(true).toEqual(true);
             }
         });
+        it('shouldnt insert second string into first strings in the specific index', function () {
+            // given
+            var input1 = 'in', input2 = 'put', where = 10, output = 'in';
+            // when
+            var outputString = stringService.insert(input1, where, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('shouldnt insert second string into first strings in the specific index', function () {
+            // given
+            var input1 = 'in2', input2 = 'put', where = 1, output = 'input2';
+            // when
+            var outputString = stringService.insert(input1, where, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('shouldnt insert second string into first strings in the specific index', function () {
+            // given
+            var input1 = 'in', input2 = 'put', where = -1, output = 'in';
+            // when
+            var outputString = stringService.insert(input1, where, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
     });
 
     describe('string method shulffe', function () {
@@ -110,12 +137,48 @@ describe('string service tests', function () {
         });
     });
 
+    describe('string method count', function () {
+        it('should count strings', function () {
+            // given
+            var input = 'ini', what = 'i', output = 2;
+            // when
+            var outputString = stringService.count(input, what);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('should count 0 strings', function () {
+            // given
+            var input = 'ini', what = 'j', output = 0;
+            // when
+            var outputString = stringService.count(input, what);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input1 = 55, input2 = 'string';
+            var wasExceptionThrown = false;
+            try {
+                // when
+                var outputString = stringService.shuffle(input1, input2);
+            } catch(e) {
+                console.log(e.message)
+
+                wasExceptionThrown = true;
+            }
+            // then
+            expect(wasExceptionThrown).toEqual(true);
+        });
+    });
+
     describe('string method find', function () {
         it('should find letter in input string', function () {
             // given
             var input1 = 'in', what = 'i', output = 0;
             // when
-            var outputString = stringService.find(input1, input2);
+            var outputString = stringService.find(input1, what);
             // then
             expect(outputString).toEqual(output);
         });

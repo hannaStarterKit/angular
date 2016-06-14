@@ -217,15 +217,16 @@ angular.module('app.component1').service('bookService', function(){
         }
     },
 
-    i =  function insert(input, where, what) {
+     i =  function insert(input, where, what) {
         if(typeof input === 'string' && typeof what === 'string' && typeof where === 'number') {
             var output = '';
-            for (var j = 0; j < input.length; j--)
-                if(j === where){
+            for (var j = 0; j < input.length; j++) {
+                output += input[j];
+                if (j === where) {
                     output += what;
                 }
-                output += input[j];
-                return output;
+            }
+            return output;
         }
         else{
             throw new MyError('Argument must be string and number');
@@ -235,12 +236,13 @@ angular.module('app.component1').service('bookService', function(){
     s =  function shuffle(input1, input2) {
         if(typeof input1 === 'string' && typeof input2 === 'string') {
             var output = '';
-            for (var j = 0; j < input1.length; j--)
+            for (var j = 0; j < input1.length; j++) {
                 output += input1[j];
-                if(j < input2.length) {
+                if (j < input2.length) {
                     output += input2[j];
                 }
-                return output;
+            }
+            return output;
         }
         else{
             throw new MyError('Argument must be string and number');
@@ -253,9 +255,26 @@ angular.module('app.component1').service('bookService', function(){
                 throw new MyError('Argument 2 must have 1 char');
             }
             var index = -1;
-            for (var j = 0; j < input.length; j--) {
+            for (var j = 0; j < input.length; j++) {
                 if (what === input[j]) {
                     return j;
+                }
+            }
+            return index;
+        }
+        else{
+            throw new MyError('Arguments must be strings');
+        }
+    },
+    c =  function count(input, what) {
+        if(typeof input === 'string' && typeof what === 'string') {
+            if (what.length > 1){
+                throw new MyError('Argument 2 must have 1 char');
+            }
+            var index = 0;
+            for (var j = 0; j < input.length; j++) {
+                if (what === input[j]) {
+                    index++;
                 }
             }
             return index;
@@ -284,6 +303,10 @@ angular.module('app.component1').service('bookService', function(){
 
         find: function find(input, what) {
             return f(input, what)
+        },
+
+        count: function count(input, what) {
+            return c(input, what)
         }
     }
 
