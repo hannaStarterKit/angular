@@ -12,14 +12,139 @@ describe('string service tests', function () {
         stringService = StringService;
     }));
 
-    describe('string method', function () {
+    describe('string method reverse', function () {
         it('should reverse input string', function () {
             // given
-            var data = 'input';
+            var input = 'input', output = 'tupni';
             // when
-            var outputString = stringService.reverse(data);
+            var outputString = stringService.reverse(input);
             // then
-            expect(outputString).toEqual('tupni');
+            expect(outputString).toEqual(output);
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input = 5;
+            try {
+                // when
+                var outputString = stringService.reverse(input);
+            } catch(e) {
+                console.log(e.message)
+                // then
+                expect(true).toEqual(true);
+            }
+        });
+
+    });
+
+    describe('string method append', function () {
+        it('should append 2 strings', function () {
+            // given
+            var input1 = 'in', input2 = 'put', output = 'input';
+            // when
+            var outputString = stringService.append(input1, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input1 = 5, input2 = 'string';
+            try {
+                // when
+                var outputString = stringService.append(input1, input2);
+            } catch(e) {
+                console.log(e.message)
+                // then
+                expect(true).toEqual(true);
+            }
+        });
+
+    });
+
+    describe('string method insert', function () {
+        it('should insert second string into first strings in the specific index', function () {
+            // given
+            var input1 = 'in', input2 = 'put', where = 2, output = 'input';
+            // when
+            var outputString = stringService.insert(input1, where, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input1 = 5, input2 = 'string', where = 2;
+            try {
+                // when
+                var outputString = stringService.insert(input1, where, input2);
+            } catch(e) {
+                console.log(e.message)
+                // then
+                expect(true).toEqual(true);
+            }
         });
     });
+
+    describe('string method shulffe', function () {
+        it('should shulffe 2 strings', function () {
+            // given
+            var input1 = 'in', input2 = 'put', output = 'ipnu';
+            // when
+            var outputString = stringService.shuffle(input1, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input1 = 5, input2 = 'string';
+            try {
+                // when
+                var outputString = stringService.shuffle(input1, input2);
+            } catch(e) {
+                console.log(e.message)
+                // then
+                expect(true).toEqual(true);
+            }
+        });
+    });
+
+    describe('string method find', function () {
+        it('should find letter in input string', function () {
+            // given
+            var input1 = 'in', what = 'i', output = 0;
+            // when
+            var outputString = stringService.find(input1, input2);
+            // then
+            expect(outputString).toEqual(output);
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input = 5, what = 'string';
+            try {
+                // when
+                var outputString = stringService.find(input, what);
+            } catch(e) {
+                console.log(e.message)
+                // then
+                expect(e.message).toEqual('Arguments must be strings');
+            }
+        });
+
+        it('should throw IilegalArgumentExcaption', function () {
+            // given
+            var input = 'aaa', what = 'string';
+            try {
+                // when
+                var outputString = stringService.find(input, what);
+            } catch(e) {
+                console.log(e.message)
+                // then
+                expect(e.message).toEqual('Argument 2 must have 1 char');
+            }
+        });
+    });
+
 });

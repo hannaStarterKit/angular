@@ -181,17 +181,109 @@ angular.module('app.component1').service('bookService', function(){
 
 }).factory('StringService', function () {
 
-    var r=  function reverse(s) {
-        var output = '';
-        for (var i = s.length - 1; i >= 0; i--)
-            output += s[i];
-        return output;
+    function IllegalArgumentException(message) {
+        this.message = message;
     }
 
+    // Create a new object, that prototypically inherits from the Error constructor
+    function MyError(message) {
+        this.name = 'IllegalArgumentException';
+        this.message = message || 'Default Message';
+        this.stack = (new Error()).stack;
+    }
+    MyError.prototype = Object.create(Error.prototype);
+    MyError.prototype.constructor = MyError;
+
+    var r =  function reverse(input) {
+        if(typeof input === 'string') {
+            var output = '';
+            for (var i = input.length - 1; i >= 0; i--)
+                output += input[i];
+                return output;
+        }
+        else{
+            throw new MyError('Argument must be string');
+        }
+    },
+
+    a = function append(first, second){
+        if(typeof first === 'string' && typeof second === 'string') {
+            var output = '';
+            output = first + second;
+            return output;
+        }
+        else{
+            throw new MyError('Arguments must be string');
+        }
+    },
+
+    i =  function insert(input, where, what) {
+        if(typeof input === 'string' && typeof what === 'string' && typeof where === 'number') {
+            var output = '';
+            for (var j = 0; j < input.length; j--)
+                if(j === where){
+                    output += what;
+                }
+                output += input[j];
+                return output;
+        }
+        else{
+            throw new MyError('Argument must be string and number');
+        }
+    },
+
+    s =  function shuffle(input1, input2) {
+        if(typeof input1 === 'string' && typeof input2 === 'string') {
+            var output = '';
+            for (var j = 0; j < input1.length; j--)
+                output += input1[j];
+                if(j < input2.length) {
+                    output += input2[j];
+                }
+                return output;
+        }
+        else{
+            throw new MyError('Argument must be string and number');
+        }
+    },
+
+    f =  function find(input, what) {
+        if(typeof input === 'string' && typeof what === 'string') {
+            if (what.length > 1){
+                throw new MyError('Argument 2 must have 1 char');
+            }
+            var index = -1;
+            for (var j = 0; j < input.length; j--) {
+                if (what === input[j]) {
+                    return j;
+                }
+            }
+            return index;
+        }
+        else{
+            throw new MyError('Arguments must be strings');
+        }
+    };
+
     return{
-        reverse: function reverse(stringToreverse)
-        {
-            return r(stringToreverse);
+        reverse: function reverse(stringToReverse) {
+            return r(stringToReverse);
+        },
+
+        append: function append(first, second){
+            return a(first, second);
+        },
+
+        insert: function insert(input, where, what) {
+            return i(input, where, what);
+        },
+
+        shuffle: function shuffle(input1, input2) {
+            return s(input1, input2);
+        },
+
+        find: function find(input, what) {
+            return f(input, what)
         }
     }
 
